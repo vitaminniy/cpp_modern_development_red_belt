@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.19)
+
+project(cpp_modern_development LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+add_compile_options(-Wall -Werror -Wextra -Wpedantic)
+
+add_subdirectory(src)
+
+enable_testing()
+set(CMAKE_CTEST_ARGUMENTS "--output-on-failure")
