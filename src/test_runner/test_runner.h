@@ -93,11 +93,15 @@ private:
   int fail_count = 0;
 };
 
+#define UNIQ_HINT_NAME(line) __hint__##line
+#define UNIQ_HINT(line) UNIQ_HINT_NAME(line)
+#define HINT UNIQ_HINT(__LINE__)
+
 #define ASSERT_EQUAL(x, y)                                                     \
   {                                                                            \
-    std::ostringstream os;                                                     \
-    os << #x << " != " << #y << ", " << __FILE__ << ":" << __LINE__;           \
-    AssertEqual(x, y, os.str());                                               \
+    std::ostringstream HINT;                                                   \
+    HINT << #x << " != " << #y << ", " << __FILE__ << ":" << __LINE__;         \
+    AssertEqual(x, y, HINT.str());                                             \
   }
 
 #define ASSERT(x)                                                              \
