@@ -7,7 +7,9 @@ clean:
 .PHONY: clean
 
 format:
-	find src/ -type f -name "*.h" -print -o -name "*.cpp" -print | xargs clang-format -i
+	find src/ -type f -name "*.h" -print 	| xargs clang-format -i
+	find src/ -type f -name "*.hpp" -print 	| xargs clang-format -i
+	find src/ -type f -name "*.cpp" -print 	| xargs clang-format -i
 .PHONY: format
 
 build:
