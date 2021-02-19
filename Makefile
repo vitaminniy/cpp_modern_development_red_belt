@@ -6,14 +6,15 @@ clean:
 	rm -rf $(BUILD_DIR)
 .PHONY: clean
 
-format:
-	find src/ -type f -name "*.h" -print 	| xargs clang-format -i
-	find src/ -type f -name "*.hpp" -print 	| xargs clang-format -i
-	find src/ -type f -name "*.cpp" -print 	| xargs clang-format -i
+cmake:
+	cmake -B $(BUILD_DIR) -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+.PHONY: cmake
+
+format: cmake
+	cd $(BUILD_DIR) && make format
 .PHONY: format
 
-build:
-	cmake -B $(BUILD_DIR)
+build: cmake
 	cd $(BUILD_DIR) && cmake --build .
 .PHONY: build
 
